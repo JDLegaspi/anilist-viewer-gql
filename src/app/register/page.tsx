@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { LoadingSpinner } from "@/components/loading-spinner";
 import {
   Box,
   Button,
@@ -8,17 +8,20 @@ import {
   FormLabel,
   Heading,
   Input,
+  Text,
   VStack,
   useToast,
 } from "@chakra-ui/react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 const RegisterPage: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [registering, setRegistering] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
 
   const toast = useToast();
   const router = useRouter();
@@ -51,6 +54,7 @@ const RegisterPage: React.FC = () => {
       });
 
       if (success) {
+        setSuccess(true);
         router.push("/search");
 
         toast({
@@ -76,6 +80,15 @@ const RegisterPage: React.FC = () => {
       setRegistering(false);
     }
   };
+
+  if (registering || success) {
+    return (
+      <Box>
+        <LoadingSpinner />
+        <Text textAlign="center">Registering your account!</Text>
+      </Box>
+    );
+  }
 
   return (
     <Box width="full" maxWidth="md" mx="auto" mt="10">

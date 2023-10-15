@@ -1,7 +1,5 @@
 "use client";
 
-import { redirect } from "next/navigation";
-
 import { useSession } from "next-auth/react";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import {
@@ -20,6 +18,7 @@ import {
 import { Modal } from "@/components/modal";
 import { Step, Stepper } from "@/components/stepper";
 import { SearchResults } from "./components/search-results";
+import { LoadingSpinner } from "@/components/loading-spinner";
 
 const steps: Step[] = [
   { title: "Set username" },
@@ -167,7 +166,7 @@ const SearchResultsPage = () => {
   ]);
 
   if (status === "loading") {
-    return <p>Loading....</p>;
+    return <LoadingSpinner />;
   }
 
   return (
@@ -179,8 +178,10 @@ const SearchResultsPage = () => {
         onClose={handleModalClose}
         canClose={!shouldUserOnboard}
       >
-        <Stepper activeStep={activeStep} steps={steps} />
-        <Box pt={4}>{onboardingContent}</Box>
+        <Box px={4}>
+          <Stepper activeStep={activeStep} steps={steps} />
+          <Box pt={4}>{onboardingContent}</Box>
+        </Box>
       </Modal>
     </>
   );
