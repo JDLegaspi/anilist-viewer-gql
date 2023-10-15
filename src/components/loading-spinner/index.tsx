@@ -4,7 +4,7 @@ export const LoadingSpinner = () => {
   return (
     <Container
       maxW="container.xl"
-      pt={32}
+      pt={8}
       pb={4}
       alignContent="center"
       justifyContent="center"

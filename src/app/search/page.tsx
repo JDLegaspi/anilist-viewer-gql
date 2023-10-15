@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { ReactNode, useEffect, useMemo, useState } from "react";
+import { ReactNode, Suspense, useEffect, useMemo, useState } from "react";
 import {
   Box,
   Button,
