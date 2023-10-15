@@ -24,6 +24,12 @@ const query = gql`
           romaji
           english
         }
+        description
+        startDate {
+          year
+          month
+          day
+        }
       }
     }
   }
@@ -39,6 +45,12 @@ export type Media = {
   title: {
     romaji: string;
     english?: string | null;
+  };
+  description: string | null;
+  startDate: {
+    year: number | null;
+    month: number | null;
+    day: number | null;
   };
 };
 

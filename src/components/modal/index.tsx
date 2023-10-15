@@ -1,6 +1,6 @@
 import {
-  Button,
   Modal as ChakraModal,
+  type ModalProps as ChakraModalProps,
   ModalOverlay,
   ModalContent,
   ModalHeader,
@@ -14,9 +14,10 @@ type ModalProps = {
   children: ReactNode;
   footerContent?: ReactNode;
   onClose: () => void;
-  heading: string;
   isOpen: boolean;
   canClose?: boolean;
+  heading?: string;
+  size?: ChakraModalProps["size"];
 };
 
 export const Modal = ({
@@ -26,14 +27,15 @@ export const Modal = ({
   canClose,
   footerContent,
   heading,
+  size,
 }: ModalProps) => {
   return (
-    <ChakraModal isOpen={isOpen} onClose={onClose}>
+    <ChakraModal isOpen={isOpen} onClose={onClose} size={size}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>{heading}</ModalHeader>
+        {heading && <ModalHeader>{heading}</ModalHeader>}
         {canClose ?? <ModalCloseButton />}
-        <ModalBody>{children}</ModalBody>
+        <ModalBody p={2}>{children}</ModalBody>
         {footerContent && <ModalFooter>{footerContent}</ModalFooter>}
       </ModalContent>
     </ChakraModal>

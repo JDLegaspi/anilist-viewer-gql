@@ -12,15 +12,8 @@ export const ShowTileList = ({ media }: ShowTileListProps) => {
   console.log({ media });
   return (
     <SimpleGrid columns={[1, 2, 3, 4, null]} spacing={8}>
-      {media.map(({ averageScore, coverImage, title, popularity }, index) => (
-        <ShowTile
-          key={index}
-          imageUrl={coverImage.large}
-          titleRomaji={title.romaji}
-          titleEnglish={title.english ?? undefined}
-          averageScore={averageScore ?? undefined}
-          popularity={popularity ?? undefined}
-        />
+      {media.map((show, index) => (
+        <ShowTile key={index} show={show} />
       ))}
     </SimpleGrid>
   );
