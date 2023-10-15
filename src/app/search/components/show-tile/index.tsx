@@ -10,6 +10,7 @@ import {
   Text,
   Button,
   HStack,
+  Stack,
 } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -80,13 +81,23 @@ export const ShowTile = ({
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         size="5xl"
+        canClose
       >
-        <HStack p={2} spacing={10} align="start">
+        <Stack
+          direction={{
+            base: "column",
+            md: "row",
+          }}
+          p={2}
+          spacing={10}
+          align="start"
+        >
           <Image
             src={imageUrl}
             alt={`${showTitle} banner`}
             height={500}
             width="100%"
+            objectFit="cover"
           />
           <VStack spacing={3} align="start">
             <Text fontWeight="bold" fontSize="2xl">
@@ -101,7 +112,7 @@ export const ShowTile = ({
               {startDay || "N/A"}
             </Text>
           </VStack>
-        </HStack>
+        </Stack>
       </Modal>
     </>
   );

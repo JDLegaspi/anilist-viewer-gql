@@ -42,9 +42,11 @@ export default function RootLayout({
                 </Text>
               )}
               {sessionData.user.jobTitle && (
-                <Badge borderRadius="full" colorScheme="teal" px={3}>
-                  {sessionData.user.jobTitle}
-                </Badge>
+                <Box display={{ base: "none", md: "block" }}>
+                  <Badge borderRadius="full" colorScheme="teal" px={3}>
+                    {sessionData.user.jobTitle}
+                  </Badge>
+                </Box>
               )}
               <Button onClick={() => signOut()} mr={2}>
                 Sign Out

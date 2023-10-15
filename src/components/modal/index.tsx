@@ -7,6 +7,7 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
+  Box,
 } from "@chakra-ui/react";
 import type { ReactNode } from "react";
 
@@ -24,7 +25,7 @@ export const Modal = ({
   children,
   isOpen,
   onClose,
-  canClose,
+  canClose = true,
   footerContent,
   heading,
   size,
@@ -34,8 +35,10 @@ export const Modal = ({
       <ModalOverlay />
       <ModalContent>
         {heading && <ModalHeader>{heading}</ModalHeader>}
-        {canClose ?? <ModalCloseButton />}
-        <ModalBody p={2}>{children}</ModalBody>
+        {canClose && <ModalCloseButton />}
+        <Box>
+          <ModalBody p={2}>{children}</ModalBody>
+        </Box>
         {footerContent && <ModalFooter>{footerContent}</ModalFooter>}
       </ModalContent>
     </ChakraModal>
